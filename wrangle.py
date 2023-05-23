@@ -62,6 +62,20 @@ def is_it_null(df_name):
         print(f"{df_name[col].isna().value_counts()}") 
 #call should be: wrg.is_it_null(df_name)  
 
+#the two following functions is for ploting univar
+#makes a list of all var
+def df_column_name(df_name):
+    col_name = []
+    for x in df_name.columns[0:]: #check to make sure the range is what you want
+        col_name.append(x)   
+    return col_name       
+
+def plot_uni_var(df_name):    #plots univar
+    for col in (df_column_name(df_name)):
+        plt.hist(df_name[col])
+        plt.title(col)
+        plt.show()   
+
 #A function specific to zillow to fix column names, drop NaNs,change floats to ints, and drop outliers
 def wrangle_zillow(df):
     df = df.rename(columns = {'bedroomcnt':'bedrooms',
